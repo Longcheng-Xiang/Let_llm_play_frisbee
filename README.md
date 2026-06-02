@@ -1,14 +1,14 @@
 # Frisbee 5v5 Agent World
 
-This project places LLM-controlled agents into a simplified 5v5 frisbee world. Each player observes structured game state, chooses a legal action, and the simulator resolves movement, throws, catches, blocks, turnovers, stall count, and scoring.
+This project places LLM-controlled agents into a 5v5 frisbee world. Each player observes their environment in a structured format, and returns an action in a structured format. During each frame, we can see clearly what each agent is thinking, as well as the interactions between them (for example, an "eye contact" between the thrower and the receiver of the frisbee).
 
-The main idea is the harness: a loop that turns world state into model observations, turns model JSON into game actions, and checks whether the agents can actually play through a point.
+The simulator resolves movement, throws, catches, blocks, turnovers, stall count, and scoring of the game.
 
-The current submitted version is optimized and tested around DeepSeek, especially `deepseek-v4-flash` with thinking enabled. Other providers can be used, but the model adapter, reasoning option, usage parsing, cache accounting, and cost estimator are DeepSeek-specific today.
+The current submitted version is optimized and tested around DeepSeek, specifically `deepseek-v4-flash` with thinking enabled. Other providers can be used, but the model adapter, reasoning option, usage parsing, cache accounting, and cost estimator are DeepSeek-specific today.
 
 ## Start Here: Open The Viewer
 
-You can inspect the included 19-frame scoring demo without an API token. The replay log is `examples/runs/final_demo_19f_score.jsonl`, and the viewer loads it by default.
+You can get familiar with the project quickly by directly inspecting the included 19-frame scoring demo without an API token. The replay log is `examples/runs/final_demo_19f_score.jsonl`, and the viewer loads it by default.
 
 ```bash
 # after cloning or downloading this repository
@@ -24,7 +24,7 @@ http://127.0.0.1:8766/viewer/
 
 Use `Next`, `Prev`, `Play`, the timeline, and the player selector to inspect what happened. The `Agent Log` shows each awake agent's action, reason, API latency, usage, raw response, and returned thinking trace when available.
 
-To run a new live model-controlled point, create a local `.env` file first:
+To run a live game controlled by agents, create a local `.env` file first:
 
 ```bash
 cp .env.example .env
@@ -119,6 +119,7 @@ Start with `docs/design/README.md` if you want to understand the design before r
 - `docs/design/development_stages.md`: short history of the design sequence.
 - `docs/design/project_structure.md`: what every submitted file does.
 - `docs/design/observation_action_space.md`: what agents see and what actions they can return.
+- `docs/design/example_prompt.md`: one complete public-safe V2 prompt packet for an awake player decision.
 - `docs/design/game_rules_and_config.md`: field, player stats, stall count, throw score, disc speed, and default settings.
 - `docs/design/cost_and_models.md`: API usage, costs, stop behavior, and tested model setup.
 - `docs/design/model_switching.md`: how to adapt the project to another provider.

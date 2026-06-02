@@ -70,6 +70,7 @@ This map explains what each submitted file does.
 | `docs/design/system_design.md` | Architecture, frame logic, prompt structure, player stats, catch/block judgement, and awake/sleep design. |
 | `docs/design/project_structure.md` | This file. |
 | `docs/design/observation_action_space.md` | Detailed observation fields and legal JSON actions. |
+| `docs/design/example_prompt.md` | One complete public-safe V2 prompt packet for a frame-0 awake player decision. |
 | `docs/design/game_rules_and_config.md` | Field constants, default settings, player stats, fixed matchups, and rule configuration. |
 | `docs/design/cost_and_models.md` | Tested model setup, API cost, V2 cost saving, stop behavior, and token safety. |
 | `docs/design/model_switching.md` | How to switch to another DeepSeek model or adapt the adapter for another provider. |

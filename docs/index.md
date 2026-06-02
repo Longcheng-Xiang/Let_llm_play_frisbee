@@ -57,6 +57,7 @@ Cost is estimated from DeepSeek cache-hit and cache-miss usage fields; other pro
 - [System design](design/system_design.md)
 - [Project structure](design/project_structure.md)
 - [Observation and action space](design/observation_action_space.md)
+- [Example V2 prompt](design/example_prompt.md)
 - [Game rules and configuration](design/game_rules_and_config.md)
 - [Cost and model setup](design/cost_and_models.md)
 - [Changing models](design/model_switching.md)
