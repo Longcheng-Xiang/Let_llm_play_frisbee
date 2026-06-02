@@ -2,11 +2,15 @@
 
 This is a simplified 5v5 frisbee world for LLM-controlled agents. The project focuses on the agent harness: observations, legal actions, model calls, simulator resolution, and replay/inspection tools.
 
+The submitted version is optimized and tested around DeepSeek V4 Flash with thinking enabled. Other providers can be used, but the adapter, reasoning option, usage parsing, cache accounting, and cost estimates are DeepSeek-specific today.
+
 ## Try The Project
 
 Clone the repository and run:
 
 ```bash
+git clone https://github.com/Longcheng-Xiang/Let_llm_play_frisbee.git
+cd Let_llm_play_frisbee
 python3 scripts/serve_live_trial.py --port 8766
 ```
 
@@ -29,7 +33,9 @@ The viewer loads the included 19-frame scoring demo even without an API token. A
   <source src="media/frisbee-project-demo-video.mp4" type="video/mp4">
 </video>
 
-The blue-score demo ends after 19 frames and used 135 API calls for an estimated `$0.112026`. The red-score live run ends after 8 frames and used 48 API calls for an estimated `$0.039028`.
+The blue-score demo uses the latest V2 awake/sleep setup with DeepSeek V4 Flash thinking. It ends after 19 frames and used 135 API calls for an estimated `$0.112026`. The red-score live run ends after 8 frames and used 48 API calls for an estimated `$0.039028`.
+
+Cost is estimated from DeepSeek cache-hit and cache-miss usage fields; other providers need their own estimator.
 
 ## Simple Rules
 

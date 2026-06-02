@@ -4,13 +4,15 @@ This project places LLM-controlled agents into a simplified 5v5 frisbee world. E
 
 The main idea is the harness: a loop that turns world state into model observations, turns model JSON into game actions, and checks whether the agents can actually play through a point.
 
+The current submitted version is optimized and tested around DeepSeek, especially `deepseek-v4-flash` with thinking enabled. Other providers can be used, but the model adapter, reasoning option, usage parsing, cache accounting, and cost estimator are DeepSeek-specific today.
+
 ## Start Here: Open The Viewer
 
-You can watch the included 19-frame scoring demo without an API token.
+You can inspect the included 19-frame scoring demo without an API token. The replay log is `examples/runs/final_demo_19f_score.jsonl`, and the viewer loads it by default.
 
 ```bash
 # after cloning or downloading this repository
-cd frisbee-5v5-agent-world
+cd Let_llm_play_frisbee
 python3 scripts/serve_live_trial.py --port 8766
 ```
 
@@ -20,7 +22,7 @@ Open:
 http://127.0.0.1:8766/viewer/
 ```
 
-The viewer loads the final demo replay by default. Use `Next`, `Prev`, `Play`, the timeline, and the player selector to inspect what happened. The `Agent Log` shows each awake agent's action, reason, API latency, usage, raw response, and returned thinking trace when available.
+Use `Next`, `Prev`, `Play`, the timeline, and the player selector to inspect what happened. The `Agent Log` shows each awake agent's action, reason, API latency, usage, raw response, and returned thinking trace when available.
 
 To run a new live model-controlled point, create a local `.env` file first:
 
@@ -51,7 +53,7 @@ The submission includes two model-run examples:
 
 | Example | Log | Report | Summary |
 |---|---|---|---|
-| Blue score demo | `examples/runs/final_demo_19f_score.jsonl` | `examples/runs/final_demo_19f_score_report.html` | 19 frames, 135 API calls, estimated `$0.112026`, stop reason `score` |
+| Blue score demo | `examples/runs/final_demo_19f_score.jsonl` | `examples/runs/final_demo_19f_score_report.html` | Latest V2 awake/sleep setup; `deepseek-v4-flash`, thinking on, throw score `100`, max disc speed `18`; 19 frames, 135 API calls, estimated `$0.112026`, stop reason `score` |
 | Red score live run | `examples/runs/red_score_8f_live.jsonl` | `examples/runs/red_score_8f_live_report.html` | 8 frames, 48 API calls, estimated `$0.039028`, stop reason `score` |
 
 The silent UI demo video is at `docs/media/frisbee-project-demo-video.mp4`. The same reports and video are linked from the GitHub Pages site.
@@ -83,6 +85,8 @@ Live trials make paid API calls. This project was tested with DeepSeek models, e
 
 The V2 awake/sleep version reduces cost by calling the model only for needed players. Sleeping players continue stored `move_intent` targets through a deterministic controller. The included 19-frame scoring demo used 135 calls and cost about `$0.112026` by the current DeepSeek price table in the code.
 
+The current prompt and cost structure are DeepSeek-oriented. The adapter sends DeepSeek-style `thinking` and JSON response options, reads returned `reasoning_content`, and estimates cost from DeepSeek usage fields such as `prompt_cache_hit_tokens` and `prompt_cache_miss_tokens`. The prompt is split into stable rules plus compact per-frame JSON so repeated input is friendly to DeepSeek's provider-side prompt cache. For another provider, update the adapter and cost/caching logic before trusting the UI cost estimate.
+
 The UI default uses a 20-frame upper limit, but a point can end earlier through a score, turnover flow, stop request, cost limit, or API-call limit.
 
 ## Changing The Model
@@ -95,7 +99,7 @@ The current adapter is DeepSeek-shaped. If you have a different provider, such a
 - `frisbee_5v5/deepseek_probe.py`
 - `viewer/index.html` if you want different UI labels
 
-The important pieces are the request payload, authentication, response parser, JSON action extraction, thinking/reasoning parameter, timeout behavior, and cost estimator. More detail is in `docs/design/model_switching.md`.
+The important pieces are the request payload, authentication, response parser, JSON action extraction, thinking/reasoning parameter, timeout behavior, usage parsing, prompt-cache accounting, and cost estimator. More detail is in `docs/design/model_switching.md`.
 
 ## Tests
 
@@ -119,12 +123,12 @@ Start with `docs/design/README.md` if you want to understand the design before r
 - `docs/design/cost_and_models.md`: API usage, costs, stop behavior, and tested model setup.
 - `docs/design/model_switching.md`: how to adapt the project to another provider.
 
-## GitHub Pages
+## Public GitHub Pages Site
 
-GitHub Pages is static, so it cannot run the Python server or call a model API. It can present the project, rules, design notes, and the example report. The Pages entry file is:
+This section is for anyone publishing or reviewing the public static website. GitHub Pages is static, so it cannot run the Python server or call a model API. It presents the project, rules, design notes, demo video, and example reports. The Pages entry file is:
 
 ```text
-docs/index.md
+docs/index.html
 ```
 
 After pushing to GitHub, enable Pages from the `main` branch and `/docs` folder.

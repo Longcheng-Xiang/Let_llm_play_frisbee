@@ -1,6 +1,19 @@
 # Changing Models
 
-The current implementation is tested with DeepSeek. Another provider can be used, but it is not a drop-in setting change because each provider has its own request format, response shape, reasoning options, and pricing.
+The current implementation is tested with DeepSeek and optimized around DeepSeek V4 Flash with thinking enabled. Another provider can be used, but it is not a drop-in setting change because each provider has its own request format, response shape, reasoning options, cache accounting, and pricing.
+
+## Current DeepSeek Assumptions
+
+The current adapter assumes:
+
+- a DeepSeek chat-completions endpoint,
+- a DeepSeek-style `thinking` request option,
+- JSON mode through `response_format`,
+- returned thinking text in `reasoning_content`,
+- usage fields such as `prompt_cache_hit_tokens` and `prompt_cache_miss_tokens`,
+- local price estimates from `frisbee_5v5/deepseek_probe.py`.
+
+The prompt is intentionally split into stable rules plus compact per-frame JSON so repeated input can benefit from DeepSeek provider-side prompt caching. If another provider reports cache usage differently, the UI and report cost estimate should be adjusted.
 
 ## Fast Path: Another DeepSeek Model
 
@@ -32,6 +45,7 @@ The adapter must handle:
 - reasoning/thinking option, if supported,
 - timeout and stop behavior,
 - usage parsing,
+- prompt-cache accounting,
 - cost estimation.
 
 The rest of the simulator can stay mostly unchanged if the adapter still returns a `ModelActionResult` containing one parsed action object.

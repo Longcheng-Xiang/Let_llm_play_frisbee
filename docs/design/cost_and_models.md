@@ -1,6 +1,6 @@
 # Cost And Model Setup
 
-The live system can make paid API calls. The included demo was tested with DeepSeek models, especially V4 Flash with thinking enabled.
+The live system can make paid API calls. The included demo was tested with DeepSeek models, especially V4 Flash with thinking enabled. The current implementation is optimized around DeepSeek rather than being provider-neutral.
 
 ## Tested Default
 
@@ -32,6 +32,19 @@ It ended with a blue score:
 | Stop reason | `score` |
 
 Cost is estimated from the local price table in `frisbee_5v5/deepseek_probe.py`. Provider pricing can change, so treat the number as a run-specific estimate rather than a guarantee.
+
+## DeepSeek Optimization And Cache Accounting
+
+The adapter sends requests to the DeepSeek chat-completions shape:
+
+- `thinking` is passed as a DeepSeek-style option,
+- `response_format` asks for one JSON object,
+- returned `reasoning_content` is stored in logs and reports when available,
+- usage is normalized from DeepSeek fields such as `prompt_cache_hit_tokens` and `prompt_cache_miss_tokens`.
+
+The prompt is also structured to be cache-friendly for DeepSeek: stable rules and roster information live in the system message, while the changing frame state is compact JSON in the user message. The local cost estimate prices cached input separately from cache-miss input using the DeepSeek price table.
+
+If a different provider is used, update both the request adapter and the cost/caching estimator before trusting live-run cost numbers.
 
 ## Why V2 Is Cheaper
 

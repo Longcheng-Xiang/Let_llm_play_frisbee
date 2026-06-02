@@ -51,7 +51,8 @@ This map explains what each submitted file does.
 | Path | Purpose |
 |---|---|
 | `docs/.nojekyll` | Tells GitHub Pages to serve files directly without Jekyll processing. |
-| `docs/index.md` | GitHub Pages landing page. |
+| `docs/index.html` | Static GitHub Pages landing page served by the public site. |
+| `docs/index.md` | Markdown copy of the Pages content for readers who prefer repository text. |
 | `docs/simple_frisbee_rules.md` | Short visual rule guide for readers new to frisbee. |
 | `docs/examples/final_demo_19f_score_report.html` | Static copy of the included final demo report for GitHub Pages. |
 | `docs/examples/red_score_8f_live_report.html` | Static copy of the included 8-frame red-score report for GitHub Pages. |
