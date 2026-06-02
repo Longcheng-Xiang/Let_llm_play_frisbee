@@ -49,14 +49,24 @@ Press `Start Trial` to play a new point. Press `Stop Trial` to stop the local ru
 
 ## Example Outputs
 
-The submission includes two model-run examples:
+The submission includes two model-run examples and a silent UI walkthrough.
 
-| Example | Log | Report | Summary |
-|---|---|---|---|
-| Blue score demo | `examples/runs/final_demo_19f_score.jsonl` | `examples/runs/final_demo_19f_score_report.html` | Latest V2 awake/sleep setup; `deepseek-v4-flash`, thinking on, throw score `100`, max disc speed `18`; 19 frames, 135 API calls, estimated `$0.112026`, stop reason `score` |
-| Red score live run | `examples/runs/red_score_8f_live.jsonl` | `examples/runs/red_score_8f_live_report.html` | 8 frames, 48 API calls, estimated `$0.039028`, stop reason `score` |
+[![Silent UI demo video thumbnail](docs/media/frisbee-demo-thumbnail.png)](https://longcheng-xiang.github.io/Let_llm_play_frisbee/#example-runs)
 
-The silent UI demo video is at `docs/media/frisbee-project-demo-video.mp4`. The same reports and video are linked from the GitHub Pages site.
+Click the image above to watch the silent UI demo video on GitHub Pages. The video file is also available at [docs/media/frisbee-project-demo-video.mp4](docs/media/frisbee-project-demo-video.mp4).
+
+**Blue score demo**
+
+- Log: [examples/runs/final_demo_19f_score.jsonl](examples/runs/final_demo_19f_score.jsonl)
+- Report: [examples/runs/final_demo_19f_score_report.html](examples/runs/final_demo_19f_score_report.html)
+- Setup: latest V2 awake/sleep, `deepseek-v4-flash`, thinking on, throw score `100`, max disc speed `18`
+- Result: 19 frames, 135 API calls, estimated `$0.112026`, stop reason `score`
+
+**Red score live run**
+
+- Log: [examples/runs/red_score_8f_live.jsonl](examples/runs/red_score_8f_live.jsonl)
+- Report: [examples/runs/red_score_8f_live_report.html](examples/runs/red_score_8f_live_report.html)
+- Result: 8 frames, 48 API calls, estimated `$0.039028`, stop reason `score`
 
 ## Simple Frisbee Rules
 

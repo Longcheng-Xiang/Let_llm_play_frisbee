@@ -57,6 +57,7 @@ This map explains what each submitted file does.
 | `docs/examples/final_demo_19f_score_report.html` | Static copy of the included final demo report for GitHub Pages. |
 | `docs/examples/red_score_8f_live_report.html` | Static copy of the included 8-frame red-score report for GitHub Pages. |
 | `docs/media/frisbee-project-demo-video.mp4` | Public-safe cropped silent UI walkthrough video. |
+| `docs/media/frisbee-demo-thumbnail.png` | README thumbnail that links to the GitHub Pages video section. |
 | `docs/assets/simple_rules_field.svg` | Field and scoring direction illustration. |
 | `docs/assets/simple_rules_flow.svg` | Simple play-flow illustration. |
 | `docs/assets/simple_rules_stall_turnover.svg` | Stall and turnover illustration. |
