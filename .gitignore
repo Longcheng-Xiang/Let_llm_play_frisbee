@@ -1,0 +1,13 @@
+.env
+.env.*
+!.env.example
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
+STOP_FRISBEE_GAME
+examples/runs/*
+!examples/runs/final_demo_19f_score.jsonl
+!examples/runs/final_demo_19f_score_report.html
+!examples/runs/red_score_8f_live.jsonl
+!examples/runs/red_score_8f_live_report.html

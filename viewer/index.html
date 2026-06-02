@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Frisbee 5v5 Replay</title>
+    <link rel="stylesheet" href="./styles.css?v=submission-1" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div class="brand-block">
+          <p class="eyebrow">Frisbee 5v5</p>
+          <h1>Replay Viewer</h1>
+        </div>
+        <div class="top-actions" aria-label="Replay loading controls">
+          <button id="config-lock-toggle" class="lock-toggle locked" type="button" aria-pressed="true">Locked</button>
+          <label class="compact-control">
+            <span>Version</span>
+            <select id="game-version-select">
+              <option value="v2_awake_sleep" selected>V2 Awake</option>
+              <option value="v1_roleless">V1 All Awake</option>
+            </select>
+          </label>
+          <label class="compact-control">
+            <span>Model</span>
+            <select id="model-select">
+              <option value="deepseek-v4-flash" selected>V4 Flash</option>
+              <option value="deepseek-v4-pro">V4 Pro</option>
+            </select>
+          </label>
+          <label class="compact-control">
+            <span>Thinking</span>
+            <select id="thinking-select">
+              <option value="disabled">Off</option>
+              <option value="enabled" selected>On</option>
+            </select>
+          </label>
+          <label class="compact-control frames-control">
+            <span>Frame Upper Limit</span>
+            <input id="max-frames-input" type="number" min="1" max="50" value="20" aria-label="Frame upper limit" />
+          </label>
+          <label class="compact-control">
+            <span>Throw Score</span>
+            <select id="throw-score-select">
+              <option value="100" selected>100</option>
+              <option value="0">Roster</option>
+            </select>
+          </label>
+          <label class="compact-control disc-speed-control">
+            <span>Max Disc Speed</span>
+            <input id="disc-speed-input" type="number" min="1" max="30" value="18" />
+            <small>cells/frame</small>
+          </label>
+          <button id="start-live" class="primary-action" type="button">Start Trial</button>
+          <button id="stop-live" class="danger-action" type="button">Stop Trial</button>
+          <button id="load-sample" type="button">Sample Replay</button>
+          <a class="button-link" href="./ui-guide.html" target="_blank" rel="noreferrer">UI Guide</a>
+          <a id="report-link" class="button-link" href="/api/trial/report" target="_blank" rel="noreferrer">HTML Report</a>
+          <label class="file-button">
+            <span>Open Log</span>
+            <input id="file-input" type="file" accept=".jsonl,.txt,application/json" />
+          </label>
+        </div>
+      </header>
+
+      <section class="score-strip" aria-live="polite">
+        <div>
+          <span>Frame</span>
+          <strong id="frame-label">-</strong>
+        </div>
+        <div>
+          <span>Possession</span>
+          <strong id="possession-label">-</strong>
+        </div>
+        <div>
+          <span>Disc</span>
+          <strong id="disc-label">-</strong>
+        </div>
+        <div>
+          <span>Pass</span>
+          <strong id="pass-label">-</strong>
+        </div>
+        <div>
+          <span>Stall</span>
+          <strong id="stall-label">-</strong>
+        </div>
+        <div>
+          <span>Status</span>
+          <strong id="status-label">No replay</strong>
+        </div>
+        <div>
+          <span>Live</span>
+          <strong id="live-label">not connected</strong>
+        </div>
+      </section>
+
+      <section class="layout">
+        <section class="field-panel" aria-label="Replay field">
+          <div class="field-toolbar">
+            <div class="transport" aria-label="Playback controls">
+              <button id="prev-frame" type="button">Prev</button>
+              <button id="play-toggle" type="button">Play</button>
+              <button id="next-frame" type="button">Next</button>
+            </div>
+            <label class="speed-control">
+              <span>Speed</span>
+              <select id="speed-select">
+                <option value="900">0.75x</option>
+                <option value="650" selected>1x</option>
+                <option value="400">1.5x</option>
+                <option value="250">2.5x</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="timeline-row">
+            <input id="timeline" type="range" min="0" max="0" value="0" aria-label="Replay timeline" />
+          </div>
+
+          <div class="field-legend" aria-label="Field legend">
+            <span><i class="legend-ring legend-awake" aria-hidden="true"></i>Awake: model called</span>
+            <span><i class="legend-ring legend-intent" aria-hidden="true"></i>Intent: sleeping/controller move</span>
+            <span>
+              <i class="legend-marker legend-selected-marker" aria-hidden="true"></i>
+              <i class="legend-line legend-selected" aria-hidden="true"></i>
+              Selected player
+            </span>
+            <span><i class="legend-line legend-disc" aria-hidden="true"></i>Disc path</span>
+          </div>
+
+          <div class="field-wrap">
+            <svg id="field-svg" viewBox="-4 -4 210 82" role="img" aria-labelledby="field-title">
+              <title id="field-title">Frisbee field replay</title>
+            </svg>
+          </div>
+        </section>
+
+        <aside class="side-panel">
+          <section class="panel-section">
+            <div class="section-heading">
+              <h2>Selected Player</h2>
+              <select id="player-select" aria-label="Selected player">
+                <option value="blue_1">blue_1</option>
+                <option value="blue_2">blue_2</option>
+                <option value="blue_3">blue_3</option>
+                <option value="blue_4">blue_4</option>
+                <option value="blue_5">blue_5</option>
+                <option value="red_1">red_1</option>
+                <option value="red_2">red_2</option>
+                <option value="red_3">red_3</option>
+                <option value="red_4">red_4</option>
+                <option value="red_5">red_5</option>
+              </select>
+            </div>
+            <dl class="details">
+              <div>
+                <dt>Position</dt>
+                <dd id="player-position">-</dd>
+              </div>
+              <div>
+                <dt>Role</dt>
+                <dd id="player-role">-</dd>
+              </div>
+              <div>
+                <dt>Matchup</dt>
+                <dd id="player-matchup">-</dd>
+              </div>
+              <div>
+                <dt>Attributes</dt>
+                <dd id="player-attributes">-</dd>
+              </div>
+              <div>
+                <dt>Action</dt>
+                <dd id="player-action">-</dd>
+              </div>
+              <div>
+                <dt>Reason</dt>
+                <dd id="player-reason">-</dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="panel-section">
+            <h2>Frame Events</h2>
+            <ol id="event-list" class="event-list"></ol>
+          </section>
+        </aside>
+      </section>
+
+      <section class="bottom-panel">
+        <section class="panel-section">
+          <h2>Players</h2>
+          <div id="player-table" class="player-table"></div>
+        </section>
+        <section class="panel-section">
+          <h2>Disc Trace</h2>
+          <div id="trace-summary" class="trace-summary">-</div>
+        </section>
+        <section class="panel-section agent-log-panel">
+          <div class="section-heading">
+            <h2>Agent Log</h2>
+            <strong id="agent-log-summary" class="mini-status">-</strong>
+          </div>
+          <div id="live-agent-status" class="live-agent-status"></div>
+          <div id="agent-log" class="agent-log"></div>
+        </section>
+      </section>
+    </main>
+
+    <script src="./replay.js?v=submission-1"></script>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="430" viewBox="0 0 960 430" role="img" aria-labelledby="title desc">
+  <title id="title">Simple 5v5 frisbee field and scoring direction</title>
+  <desc id="desc">A simplified field diagram showing left and right end zones, blue attacking right, red attacking left, and the disc moving toward a scoring catch.</desc>
+  <defs>
+    <marker id="arrow-blue" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M 0 0 L 12 6 L 0 12 z" fill="#1f6ed4"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M 0 0 L 12 6 L 0 12 z" fill="#d43f3a"/>
+    </marker>
+    <marker id="arrow-disc" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M 0 0 L 12 6 L 0 12 z" fill="#9a5d0f"/>
+    </marker>
+  </defs>
+
+  <rect width="960" height="430" fill="#f5f7f4"/>
+  <text x="48" y="44" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="800" fill="#172126">Field Goal</text>
+  <text x="48" y="72" font-family="Inter, Arial, sans-serif" font-size="15" fill="#64706f">Catch the disc in the attacking end zone.</text>
+
+  <g transform="translate(48 108)">
+    <rect x="0" y="0" width="864" height="246" rx="9" fill="#dff5df" stroke="#64706f" stroke-width="2"/>
+    <rect x="0" y="0" width="156" height="246" rx="9" fill="#d9e9ff"/>
+    <rect x="708" y="0" width="156" height="246" rx="9" fill="#ffe0df"/>
+    <line x1="156" y1="0" x2="156" y2="246" stroke="#64706f" stroke-width="3" stroke-dasharray="11 9"/>
+    <line x1="708" y1="0" x2="708" y2="246" stroke="#64706f" stroke-width="3" stroke-dasharray="11 9"/>
+    <line x1="432" y1="0" x2="432" y2="246" stroke="#8fa29e" stroke-width="2" stroke-dasharray="7 8"/>
+
+    <text x="78" y="-14" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" fill="#164d9a" text-anchor="middle">left end zone</text>
+    <text x="432" y="-14" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" fill="#64706f" text-anchor="middle">central field</text>
+    <text x="786" y="-14" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" fill="#9d2926" text-anchor="middle">right end zone</text>
+
+    <line x1="235" y1="207" x2="405" y2="207" stroke="#1f6ed4" stroke-width="5" marker-end="url(#arrow-blue)"/>
+    <text x="320" y="230" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#164d9a" text-anchor="middle">blue attacks right</text>
+
+    <line x1="630" y1="207" x2="460" y2="207" stroke="#d43f3a" stroke-width="5" marker-end="url(#arrow-red)"/>
+    <text x="545" y="230" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#9d2926" text-anchor="middle">red attacks left</text>
+
+    <circle cx="270" cy="105" r="20" fill="#1f6ed4" stroke="#d9e9ff" stroke-width="4"/>
+    <text x="270" y="111" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="800" fill="#ffffff" text-anchor="middle">B1</text>
+    <circle cx="580" cy="78" r="18" fill="#1f6ed4" stroke="#d9e9ff" stroke-width="4"/>
+    <text x="580" y="84" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle">B3</text>
+    <circle cx="744" cy="84" r="18" fill="#1f6ed4" stroke="#d9e9ff" stroke-width="4"/>
+    <text x="744" y="90" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle">B4</text>
+    <circle cx="620" cy="104" r="17" fill="#d43f3a" stroke="#ffe0df" stroke-width="4"/>
+    <text x="620" y="110" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle">R3</text>
+
+    <circle cx="300" cy="104" r="9" fill="#f4a62a" stroke="#9a5d0f" stroke-width="3"/>
+    <path d="M 312 100 C 420 42 562 38 722 76" fill="none" stroke="#f4a62a" stroke-width="5" stroke-dasharray="13 10" marker-end="url(#arrow-disc)"/>
+    <text x="503" y="42" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#9a5d0f" text-anchor="middle">throw to space</text>
+
+    <rect x="675" y="128" width="176" height="52" rx="7" fill="#ffffff" stroke="#cbd6d0" stroke-width="2"/>
+    <text x="763" y="150" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="800" fill="#172126" text-anchor="middle">Score</text>
+    <text x="763" y="168" font-family="Inter, Arial, sans-serif" font-size="12" fill="#64706f" text-anchor="middle">catch in end zone</text>
+  </g>
+</svg>

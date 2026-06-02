@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Frisbee 5v5 UI Guide</title>
+    <link rel="stylesheet" href="./styles.css?v=submission-1" />
+  </head>
+  <body>
+    <main class="guide-shell">
+      <header class="guide-header">
+        <div>
+          <p class="eyebrow">Frisbee 5v5</p>
+          <h1>UI Guide</h1>
+        </div>
+        <a class="button-link" href="./">Back to Viewer</a>
+      </header>
+
+      <section class="guide-intro">
+        <p>This page is a compact reference for the replay viewer controls. Live trials can make paid model calls, so use Start Trial deliberately.</p>
+      </section>
+
+      <section class="guide-recommended" aria-label="Recommended default configuration">
+        <h2>Recommended Default Setup</h2>
+        <p>For the current V2 system, the recommended testing configuration is the viewer default:</p>
+        <ul>
+          <li><strong>Version:</strong> V2 Awake</li>
+          <li><strong>Model:</strong> V4 Flash</li>
+          <li><strong>Thinking:</strong> On</li>
+          <li><strong>Frame Upper Limit:</strong> 20</li>
+          <li><strong>Throw Score:</strong> 100 for deterministic throw trajectory</li>
+          <li><strong>Max Disc Speed:</strong> 18 cells/frame</li>
+          <li><strong>Settings Lock:</strong> Locked unless intentionally comparing settings</li>
+        </ul>
+        <p><strong>Example cost:</strong> the included 19-frame scoring demo cost about $0.112026. New live-run costs vary with awake-player count, output length, cache behavior, and provider pricing.</p>
+        <p>The game may end before this upper limit because a score, stop request, or another stop condition can finish the run early.</p>
+        <p>Use other settings only when you are intentionally comparing versions, model behavior, or throw uncertainty.</p>
+      </section>
+
+      <section class="guide-grid" aria-label="Viewer controls">
+        <article class="guide-section">
+          <h2>Trial Setup</h2>
+          <dl class="guide-list">
+            <div><dt>Locked / Unlocked</dt><dd>Locked protects the recommended setup. Unlock it to change version, model, thinking, throw score, or max disc speed. Frame Upper Limit stays editable.</dd></div>
+            <div><dt>Version</dt><dd>Choose V2 Awake for wake/sleep runs, or V1 All Awake to call every player every frame.</dd></div>
+            <div><dt>Model</dt><dd>Choose the DeepSeek model used for live player decisions.</dd></div>
+            <div><dt>Thinking</dt><dd>Turns model thinking mode on or off when the selected model supports it.</dd></div>
+            <div><dt>Frame Upper Limit</dt><dd>Maximum number of frames the live trial may run before stopping.</dd></div>
+            <div><dt>Throw Score</dt><dd>Use 100 for deterministic throws, or Roster to use each player's configured throw rating.</dd></div>
+            <div><dt>Max Disc Speed</dt><dd>Caps throw speed in cells per frame.</dd></div>
+          </dl>
+        </article>
+
+        <article class="guide-section">
+          <h2>Run Buttons</h2>
+          <dl class="guide-list">
+            <div><dt>Start Trial</dt><dd>Starts a live API-backed run using the current setup controls.</dd></div>
+            <div><dt>Stop Trial</dt><dd>Stops the run and abandons waiting for active model calls. Already-started provider requests may still finish server-side.</dd></div>
+            <div><dt>Sample Replay</dt><dd>Loads the included final 19-frame scoring demo.</dd></div>
+            <div><dt>UI Guide</dt><dd>Opens this guide in a separate page.</dd></div>
+            <div><dt>HTML Report</dt><dd>Opens the readable report for the latest live log.</dd></div>
+            <div><dt>Open Log</dt><dd>Loads a local JSONL replay file from disk.</dd></div>
+          </dl>
+        </article>
+
+        <article class="guide-section">
+          <h2>Replay Controls</h2>
+          <dl class="guide-list">
+            <div><dt>Prev</dt><dd>Step backward one frame.</dd></div>
+            <div><dt>Play</dt><dd>Automatically advances frames until the replay ends. Press again to pause.</dd></div>
+            <div><dt>Next</dt><dd>Step forward one frame.</dd></div>
+            <div><dt>Speed</dt><dd>Controls playback speed for Play mode.</dd></div>
+            <div><dt>Timeline</dt><dd>Jump directly to a frame.</dd></div>
+          </dl>
+        </article>
+
+        <article class="guide-section">
+          <h2>Score Strip</h2>
+          <dl class="guide-list">
+            <div><dt>Frame</dt><dd>Current replay frame and total loaded frame index.</dd></div>
+            <div><dt>Possession</dt><dd>Team currently considered to have possession.</dd></div>
+            <div><dt>Disc</dt><dd>Held player or compact flying-disc position and speed.</dd></div>
+            <div><dt>Pass</dt><dd>Current committed pass, if private eye contact has been established.</dd></div>
+            <div><dt>Stall</dt><dd>Remaining stall count when the marker is within marking radius.</dd></div>
+            <div><dt>Status / Live</dt><dd>Replay/run state, stop reason, running frame, and estimated cost.</dd></div>
+          </dl>
+        </article>
+
+        <article class="guide-section">
+          <h2>Field Marks</h2>
+          <dl class="guide-list">
+            <div><dt>Blue / Red Circles</dt><dd>Players. The number labels show matchup pairs: B1 is guarded by R1, and so on.</dd></div>
+            <div><dt>Yellow Ring</dt><dd>Awake player: the model was called for this player on this frame.</dd></div>
+            <div><dt>Teal Dashed Ring</dt><dd>Sleeping player moving by stored intent/controller action.</dd></div>
+            <div><dt>Black Marker</dt><dd>The currently selected player.</dd></div>
+            <div><dt>Dashed Disc Path</dt><dd>Predicted straight future path of a flying disc.</dd></div>
+          </dl>
+        </article>
+
+        <article class="guide-section">
+          <h2>Inspection Panels</h2>
+          <dl class="guide-list">
+            <div><dt>Selected Player</dt><dd>Shows position, role, matchup, attributes, current action, and reason.</dd></div>
+            <div><dt>Frame Events</dt><dd>Lists simulator events for the current frame.</dd></div>
+            <div><dt>Players</dt><dd>Click a player chip to select that player.</dd></div>
+            <div><dt>Disc Trace</dt><dd>Shows disc movement/catch/turnover events for the current frame.</dd></div>
+            <div><dt>Agent Log</dt><dd>Shows model call status, usage, raw JSON content, returned reasoning, and errors when available.</dd></div>
+          </dl>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

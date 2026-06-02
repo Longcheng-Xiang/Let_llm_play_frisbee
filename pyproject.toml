@@ -1,0 +1,13 @@
+[project]
+name = "frisbee-5v5-agents"
+version = "0.1.0"
+description = "A 5v5 frisbee virtual world with LLM-controlled agents, replay UI, and structured observation/action harness."
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+frisbee-5v5 = "frisbee_5v5.cli:main"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
