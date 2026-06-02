@@ -1,5 +1,7 @@
 # Let_llm_play_frisbee
 
+This is an LLM sports-agent simulation where language-model agents play a simplified 5v5 frisbee game.
+
 This project places LLM-controlled agents into a 5v5 frisbee world. Each player observes their environment in a structured format, and returns an action in a structured format. During each frame, we can see clearly what each agent is thinking, as well as the interactions between them (for example, an "eye contact" between the thrower and the receiver of the frisbee).
 
 The simulator resolves movement, throws, catches, blocks, turnovers, stall count, and scoring of the game.
