@@ -39,7 +39,7 @@ The current recommended setup uses `Throw Score = 100`, so the throw trajectory 
 
 ## 4. Strategy And Agent Timing
 
-The strategy design changed during development. An early idea used vertical-stack tactics, but that was not a good fit for the first submitted version because it added role complexity before the basic agent world was stable.
+The strategy design changed during development. An early idea used vertical-stack tactics, but that was not a good fit for the first public version because it added role complexity before the basic agent world was stable.
 
 V2 instead uses a simpler open-movement game:
 

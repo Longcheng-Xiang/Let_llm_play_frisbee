@@ -1,6 +1,6 @@
 # Example V2 Prompt
 
-This page shows one complete prompt packet from the submitted V2 awake/sleep system. It is meant for readers who want to understand what an individual agent actually receives before choosing an action.
+This page shows one complete prompt packet from the current V2 awake/sleep system. It is meant for readers who want to understand what an individual agent actually receives before choosing an action.
 
 The example is `blue_1` at frame `0` with the recommended default setup: V2 awake/sleep, DeepSeek V4 Flash, thinking enabled, throw score `100`, max disc speed `18`, seed `7`, and history window `4`. `blue_1` starts with the disc, so this is the first thrower decision of the point.
 

@@ -1,6 +1,6 @@
 # Game Rules And Configuration
 
-This is the current final configuration used by the submission demo.
+This is the current final configuration used by the included demo.
 
 ## Field
 

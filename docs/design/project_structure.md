@@ -1,6 +1,6 @@
 # Project Structure
 
-This map explains what each submitted file does.
+This map explains what each project file does.
 
 ## Top Level
 

@@ -2,7 +2,7 @@
 
 This is a simplified 5v5 frisbee world for LLM-controlled agents. The project focuses on the agent harness: observations, legal actions, model calls, simulator resolution, and replay/inspection tools.
 
-The submitted version is optimized and tested around DeepSeek V4 Flash with thinking enabled. Other providers can be used, but the adapter, reasoning option, usage parsing, cache accounting, and cost estimates are DeepSeek-specific today.
+The current version is optimized and tested around DeepSeek V4 Flash with thinking enabled. Other providers can be used, but the adapter, reasoning option, usage parsing, cache accounting, and cost estimates are DeepSeek-specific today.
 
 ## Try The Project
 

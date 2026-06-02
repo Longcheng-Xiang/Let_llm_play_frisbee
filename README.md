@@ -4,7 +4,7 @@ This project places LLM-controlled agents into a 5v5 frisbee world. Each player 
 
 The simulator resolves movement, throws, catches, blocks, turnovers, stall count, and scoring of the game.
 
-The current submitted version is optimized and tested around DeepSeek, specifically `deepseek-v4-flash` with thinking enabled. Other providers can be used, but the model adapter, reasoning option, usage parsing, cache accounting, and cost estimator are DeepSeek-specific today.
+The current version is optimized and tested around DeepSeek, specifically `deepseek-v4-flash` with thinking enabled. Other providers can be used, but the model adapter, reasoning option, usage parsing, cache accounting, and cost estimator are DeepSeek-specific today.
 
 ## Start Here: Open The Viewer
 
@@ -49,7 +49,7 @@ Press `Start Trial` to play a new point. Press `Stop Trial` to stop the local ru
 
 ## Example Outputs
 
-The submission includes two model-run examples and a silent UI walkthrough.
+This project includes two model-run examples and a silent UI walkthrough.
 
 [![Silent UI demo video thumbnail](docs/media/frisbee-demo-thumbnail.png)](https://longcheng-xiang.github.io/Let_llm_play_frisbee/#example-runs)
 
@@ -127,7 +127,7 @@ Start with `docs/design/README.md` if you want to understand the design before r
 
 - `docs/design/system_design.md`: architecture, frame logic, prompt structure, player stats, catch/block judgement, and awake/sleep design.
 - `docs/design/development_stages.md`: short history of the design sequence.
-- `docs/design/project_structure.md`: what every submitted file does.
+- `docs/design/project_structure.md`: what every project file does.
 - `docs/design/observation_action_space.md`: what agents see and what actions they can return.
 - `docs/design/example_prompt.md`: one complete public-safe V2 prompt packet for an awake player decision.
 - `docs/design/game_rules_and_config.md`: field, player stats, stall count, throw score, disc speed, and default settings.
