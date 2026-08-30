@@ -136,12 +136,8 @@ Start with `docs/design/README.md` if you want to understand the design before r
 - `docs/design/cost_and_models.md`: API usage, costs, stop behavior, and tested model setup.
 - `docs/design/model_switching.md`: how to adapt the project to another provider.
 
-## Public GitHub Pages Site
+## Public Demo
 
-This section is for anyone publishing or reviewing the public static website. GitHub Pages is static, so it cannot run the Python server or call a model API. It presents the project, rules, design notes, demo video, and example reports. The Pages entry file is:
+View the public project page:
 
-```text
-docs/index.html
-```
-
-After pushing to GitHub, enable Pages from the `main` branch and `/docs` folder.
+https://longcheng-xiang.github.io/Let_llm_play_frisbee/
